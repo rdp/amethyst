@@ -2,15 +2,26 @@ import java.util.ArrayList
 
 class RubyObj
 
-  def +(o:Object):RubyObj # rubyobj???
-    raise 'not implemented'
-  end
-
-  def -(o:RubyObj):RubyObj
-    raise 'not implemented'
-  end
+  # def +(o:Object):RubyObj # rubyobj???
+  #   raise 'not yet implemented'
+  # end
+  # 
+  # def -(o:RubyObj):RubyObj # ?? do we need minus here or...should it be ImplementsMinus prolly the latter
+  #   raise 'not yet implemented'
+  # end
 
 end
+
+interface ImplementsMinusOneArg do
+  def -(o:RubyObj):RubyObj
+  end
+end
+
+interface ImplementsPlusOneArg do
+  def +(o:RubyObj):RubyObj
+  end
+end
+
 
 interface ImplementsToI do
   def to_i():int
@@ -31,6 +42,8 @@ end
 class RubyInt < RubyObj
   implements ImplementsToI
   implements TimesZeroArgBlockOneArg
+  implements ImplementsMinusOneArg
+  implements ImplementsPlusOneArg
 
   def initialize(a:int) # numeric ?
     @a = a
@@ -39,15 +52,23 @@ class RubyInt < RubyObj
   def initialize(incoming:RubyObj)
     @a = ImplementsToI(incoming).to_i
   end
-
+  
   $Override
-  def +(o:Object) # Object? prolly wouldnt help me here...
+  def yoyo()
+  end
+  
+
+  $Override # ?? doesn't actually do anything?
+  def +(o:RubyObj) # Object? prolly wouldnt help me here...
     # @a is an int
     RubyInt.new(@a + ImplementsToI(o).to_i)
   end
+  
+  # XXX overflow ?
 
-  def -(o:int):int # ??
-    @a - o
+  $Override
+  def -(o:RubyObj):RubyObj
+    RubyInt.new(@a - ImplementsToI(o).to_i)
   end
 
   $Override
@@ -112,12 +133,26 @@ class RubyArray < ArrayList # ArrayList<RubyObj>
 
 end
 
+# specs :)
+
+RubyInt.new(1) - RubyInt.new(2)
+RubyInt.new(1) + RubyInt.new(2)
+# RubyInt.new(1).times { } # ??
+
+# RubyInt.new(1).times do |n| ??
+  
+# end
+
+
+RubyInt.new(1).times2 do |n|
+  
+end
 
 def calcFibN(num:RubyObj)
   fib_array = RubyArray.new [RubyInt.new(0), RubyInt.new(1)]
   
 #  TimesZeroArgBlockOneArg(num-RubyInt.new(2)).times2 do |i| # ??
-  RubyInt.new(num-RubyInt.new(2)).to_i.times do |i|
+  RubyInt.new(ImplementsMinusOneArg(num)-RubyInt.new(2)).to_i.times do |i|
     # XXXX not need RubyObj class...I think...for now...
     fib_array.add(RubyObj(fib_array[i]) + RubyObj(fib_array.get(i+1)))
   end
