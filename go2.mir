@@ -27,12 +27,17 @@ interface TimesZeroArgBlockOneArg do
   end
 end
 
+# should I make this class static? cache it [in a hash]?
 class RubyInt < RubyObj
   implements ImplementsToI
   implements TimesZeroArgBlockOneArg
 
   def initialize(a:int) # numeric ?
     @a = a
+  end
+  
+  def initialize(incoming:RubyObj)
+    @a = ImplementsToI(incoming).to_i
   end
 
   $Override
@@ -112,7 +117,7 @@ def calcFibN(num:RubyObj)
   fib_array = RubyArray.new [RubyInt.new(0), RubyInt.new(1)]
   
 #  TimesZeroArgBlockOneArg(num-RubyInt.new(2)).times2 do |i| # ??
-  RubyInt.new(num-RubyInt.new(2)).to_i.times2 do |i|
+  RubyInt.new(num-RubyInt.new(2)).to_i.times do |i|
     # XXXX not need RubyObj class...I think...for now...
     fib_array.add(RubyObj(fib_array[i]) + RubyObj(fib_array.get(i+1)))
   end
