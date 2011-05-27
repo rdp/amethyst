@@ -23,7 +23,7 @@ interface CallableOneArg do
 end
 
 interface TimesZeroArgBlockOneArg do
-  def times(block:CallableOneArg):RubyObj
+  def times2(block:CallableOneArg):RubyObj
   end
 end
 
@@ -56,7 +56,7 @@ class RubyInt < RubyObj
   end
 
   $Override
-  def times(block:CallableOneArg):RubyObj
+  def times2(block:CallableOneArg):RubyObj
     x = 0
     #for(x = 0; x < @a; x += 1) # ??
     while x < @a
@@ -69,12 +69,10 @@ class RubyInt < RubyObj
 
 end
 
-
 interface CallableOneArg do
   def call(arg1:RubyObj):RubyObj
   end
 end
-
 
 interface BracketOneArg do
   def [](offset:ImplementsToI):RubyObj
@@ -109,12 +107,12 @@ class RubyArray < ArrayList # ArrayList<RubyObj>
 
 end
 
-# class RubyArray
 
 def calcFibN(num:RubyObj)
   fib_array = RubyArray.new [RubyInt.new(0), RubyInt.new(1)]
-
-  TimesZeroArgBlockOneArg(num-RubyInt.new(2)).times do |i|
+  
+#  TimesZeroArgBlockOneArg(num-RubyInt.new(2)).times2 do |i| # ??
+  RubyInt.new(num-RubyInt.new(2)).to_i.times2 do |i|
     # XXXX not need RubyObj class...I think...for now...
     fib_array.add(RubyObj(fib_array[i]) + RubyObj(fib_array.get(i+1)))
   end
