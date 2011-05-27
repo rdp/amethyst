@@ -1,0 +1,53 @@
+ruby-zy array stuffs...
+
+[] << 4
+
+stevia vaguely related to chocolate (like java) but flavoring.
+
+go.mr:7: Cannot find instance method <<(int) on java.util.ArrayList
+         fib_array << (int(fib_array.get(i)) + int(fib_array.get(i+1)))
+
+is that ever possible?
+
+or
+
+fib_array[23] ?  should it infer "get" 
+[] << 4  ? should it infer...add ?
+
+
+does mirah want to be able to do things like that, or 
+
+
+wrap jruby's stdlib itself?
+
+or just wrap stringbuffer,arraylist [or wrappers for the same...]?
+
+ask others for a ruby wishlist? :P
+
+
+go.mr:10: Cannot find instance method +(java.lang.Object) on java.lang.Object
+         fib_array << (fib_array.get(i) + fib_array.get(i+1))
+
+hmm...
+
+RubyObject
+
+ + RubyObject
+
+int + int
+string + string
+string + fixnum
+
+
+
+ooh ooh '' + 3 work :) [just call to_str or what not]
+
+ooh the abstract class can just raise for everything in it :P
+  maybe sane hashcodes though...hmm...a sane default hashcode...hmm...
+  auto generate a sane hashcode?
+
+
+charsequence for string :)
+
+my string will have to implement Interface CharSequence I'd wager...so that they can pass through strings and it survive :P
+
