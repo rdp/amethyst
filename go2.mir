@@ -1,0 +1,127 @@
+import java.util.ArrayList
+
+class RubyObj
+
+  def +(o:Object):RubyObj # rubyobj???
+    raise 'not implemented'
+  end
+
+  def -(o:RubyObj):RubyObj
+    raise 'not implemented'
+  end
+
+end
+
+interface ImplementsToI do
+  def to_i():int
+  end
+end
+
+interface CallableOneArg do
+  def call(arg1:RubyObj):RubyObj
+  end
+end
+
+interface TimesZeroArgBlockOneArg do
+  def times(block:CallableOneArg):RubyObj
+  end
+end
+
+class RubyInt < RubyObj
+  implements ImplementsToI
+  implements TimesZeroArgBlockOneArg
+
+  def initialize(a:int) # numeric ?
+    @a = a
+  end
+
+  $Override
+  def +(o:Object) # Object? prolly wouldnt help me here...
+    # @a is an int
+    RubyInt.new(@a + ImplementsToI(o).to_i)
+  end
+
+  def -(o:int):int # ??
+    @a - o
+  end
+
+  $Override
+  def to_i():int # ummm..shouldn't it complain if I don't have this?
+    @a
+  end
+
+  $Override
+  def toString # any way to provide for free?
+    '' + @a
+  end
+
+  $Override
+  def times(block:CallableOneArg):RubyObj
+    x = 0
+    #for(x = 0; x < @a; x += 1) # ??
+    while x < @a
+        block.call(RubyInt.new(x)) # XXXX reuse the rubyint obj? make it frozen too somehow? FrozenRubyInt?
+#     x++# ?
+        x += 1
+    end
+    self
+  end
+
+end
+
+
+interface CallableOneArg do
+  def call(arg1:RubyObj):RubyObj
+  end
+end
+
+
+interface BracketOneArg do
+  def [](offset:ImplementsToI):RubyObj
+  end
+end
+
+# interfaces are loosy-goosey! Suh-weet!
+
+class RubyArray < ArrayList # ArrayList<RubyObj>
+  implements BracketOneArg
+  #def <<(o:RubyObj) # ??
+  #  add o
+  #end
+
+  def [](idx:RubyObj):RubyObj 
+    # call to_i is what ruby seems to always do...
+    RubyObj(get(ImplementsToI(idx).to_i))
+  end
+  
+
+  # do we really need this? hmm...
+  def [](idx:int):RubyObj # ImplementsToI ? ImplementsToI# [1,2,3][fake_obj] =>     TypeError: can't convert Yo to Integer (Yo#to_int gives Array)
+    RubyObj(get(idx))
+  end
+
+  def initialize(o:java.util.List)
+    #    super # should work?
+    #    super(o) # should work?
+    #puts 'in init' # we get here...
+    addAll(o)
+  end
+
+end
+
+# class RubyArray
+
+def calcFibN(num:RubyObj)
+  fib_array = RubyArray.new [RubyInt.new(0), RubyInt.new(1)]
+
+  TimesZeroArgBlockOneArg(num-RubyInt.new(2)).times do |i|
+    # XXXX not need RubyObj class...I think...for now...
+    fib_array.add(RubyObj(fib_array[i]) + RubyObj(fib_array.get(i+1)))
+  end
+  # puts fib_array
+end
+
+3_000_000.times {
+  calcFibN(RubyInt.new(30))
+}
+

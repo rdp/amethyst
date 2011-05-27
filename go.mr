@@ -1,0 +1,16 @@
+import java.util.ArrayList
+
+def less_than__less_than
+end
+
+
+def calcFibN(num:int)
+     fib_array = ArrayList.new [0,1]
+     (num-2).times do |i|
+         fib_array.add(Integer.new(Integer(fib_array.get(i)).intValue + Integer(fib_array.get(i+1)).intValue))
+     end
+#     puts fib_array
+end
+3_000_000.times {
+  calcFibN(30)
+}
