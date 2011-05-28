@@ -1,5 +1,19 @@
+import java.util.ArrayList
 
-a = 3
-b = 3.times {
-  nil
-}
+interface CallableOneArg do
+  def call(arg1:Object):Object
+  end
+end
+
+# should I make this class static? cache it [in a hash]?
+class RubyInt < Object
+  
+  def times(call_me:CallableOneArg):Object
+    self
+  end
+
+end
+
+RubyInt.new.times do |n|
+
+end

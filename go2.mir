@@ -146,11 +146,12 @@ end
 
 #RubyInt.new(1).times do |n| # ?? ICE ?
 #end
+
 #3.times do |n|
-  
+#  33  
 #end
 
-# 
+ 
 # def calcFibN(num:RubyObj)
 #   fib_array = RubyArray.new [RubyInt.new(0), RubyInt.new(1)]
 #   

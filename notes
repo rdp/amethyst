@@ -1,4 +1,13 @@
 
+  def times(call_me:CallableOneArg):Object
+    puts call_me
+  end
+ => Yoyo.mir$__xform_tmp_2@5b02a6
+
+can we make this prettier?
+
+
+should it disallow this?
 
 interface CallableOneArg do
   def call(arg1:RubyObj):RubyObj
@@ -9,9 +18,6 @@ interface CallableOneArg do
   def call(arg1:RubyObj):RubyObj
   end
 end
-
-then using it blows chunks...
-
 
 
 
