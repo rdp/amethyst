@@ -1,7 +1,20 @@
-
-  def times(call_me:CallableOneArg):Object
-    puts call_me
+could do:
+  def a
+   3 + 4
   end
+  
+  optimize out to
+  three = RubyInt.new(3)
+  four = RubyInt.new(4)
+  def a
+   plusser(three) + four
+  end
+
+  also maybe "if it's +3 then call takesPlusInt(a)+3 ?
+  
+def times(call_me:CallableOneArg):Object
+  puts call_me
+end
  => Yoyo.mir$__xform_tmp_2@5b02a6
 
 can we make this prettier?

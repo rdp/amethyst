@@ -14,6 +14,11 @@ class RubyObj
 
 end
 
+interface ImplementsLessThanLessThanOneArg do
+  def lessThanLessThan(o:RubyObj):RubyObj
+  end
+end
+
 interface ImplementsMinusOneArg do
   def -(o:RubyObj):RubyObj
   end
@@ -106,67 +111,71 @@ end
 # interfaces are loosy-goosey! Yes!
 
 class RubyArray < ArrayList # ArrayList<RubyObj> ??
-  implements BracketOneArg
-  
+  implements BracketOneArg, ImplementsLessThanLessThanOneArg
   #def <<(o:RubyObj) # ??
   #  add o
   #end
+  
+  def lessThanLessThan(o:RubyObj)
+    add o
+    o
+  end
 
   def [](idx:RubyObj):RubyObj 
     # calling to_i is what ruby seems to always do...
     RubyObj(get(ImplementsToI(idx).to_i))
   end
   
-# do we really need this? hmm...
-#  def [](idx:int):RubyObj # ImplementsToI ? ImplementsToI# [1,2,3][fake_obj] =>     TypeError: can't convert Yo to Integer (Yo#to_int gives Array)
-#    RubyObj(get(idx))
-#  end
-
   def initialize(o:java.util.List)
     #    super # ??
     #    super(o) # ??
     addAll(o)
   end
-
+  
 end
 
-# specs :)
-
-RubyInt.new(1) - RubyInt.new(2)
-RubyInt.new(1) + RubyInt.new(2)
-
-RubyInt.new(1).times do |n| 
-  3
-  nil
-end
 
 RubyInt.new(1).times do |n| 
   RubyInt.new(1)
 end
 
-#RubyInt.new(1).times do |n| # ?? ICE ?
+
+def calcFibN(num:RubyObj)
+  fib_array = RubyArray.new [RubyInt.new(0), RubyInt.new(1)]
+  
+#  TimesZeroArgBlockOneArg(num-RubyInt.new(2)).times2 do |i| # ??
+   TimesZeroArgBlockOneArg(ImplementsMinusOneArg(num)-RubyInt.new(2)).times do |i|
+  
+    # XXXX not need RubyObj class...I think...
+    #          fib_array << (fib_array[i] + fib_array[i+1])
+    eyePlusOne = ImplementsPlusOneArg(i)+ RubyInt.new(1)
+    new_entry = ImplementsPlusOneArg(fib_array[i]) + fib_array[eyePlusOne]
+    # add it to array
+    ImplementsLessThanLessThanOneArg(fib_array).lessThanLessThan(new_entry)
+    nil
+  end
+   puts fib_array
+end
+
+# specs :)
+#RubyInt.new(1) - RubyInt.new(2)
+#RubyInt.new(1) + RubyInt.new(2)
+
+#RubyInt.new(1).times do |n| 
+#  3
+#  nil
 #end
 
-#3.times do |n|
-#  33  
+#RubyInt.new(1).times do |n| 
+#  RubyInt.new(1)
+#end
+
+#RubyInt.new(1).times do |n| # ICE
 #end
 
  
-# def calcFibN(num:RubyObj)
-#   fib_array = RubyArray.new [RubyInt.new(0), RubyInt.new(1)]
-#   
-# #  TimesZeroArgBlockOneArg(num-RubyInt.new(2)).times2 do |i| # ??
-#   RubyInt.new(ImplementsMinusOneArg(num)-RubyInt.new(2)).to_i.times do |i|
-#     # XXXX not need RubyObj class...I think...for now...
-#     fib_array.add(RubyObj(fib_array[i]) + RubyObj(fib_array.get(i+1)))
-#   end
-#   # puts fib_array
-# end
-# 
-# 3_000_000.times {
-#   calcFibN(RubyInt.new(30))
-# }
-# 
-
+3_000_000.times {
+  calcFibN(RubyInt.new(30))
+}
 
 puts 'worked'
