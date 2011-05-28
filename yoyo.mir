@@ -1,11 +1,5 @@
-interface MyInterface do
-  def run(a:int):int; end
-end
 
-def go(block:MyInterface)
-  block.run(3)
-end
-
-# how does it parse this? apparently the block yields no return value....hmm...
-
-go { 4 }
+a = 3
+b = 3.times {
+  nil
+}

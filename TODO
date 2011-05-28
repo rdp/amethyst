@@ -12,3 +12,5 @@ a "to ruby and back" bridge?
 do we need to wrap ruby classes in their own little wrapper classes? (auto, manual...)
 
 macros/erb/clojure...
+
+some inspect-er method?

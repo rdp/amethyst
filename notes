@@ -1,3 +1,35 @@
+
+
+interface CallableOneArg do
+  def call(arg1:RubyObj):RubyObj
+  end
+end
+
+interface CallableOneArg do
+  def call(arg1:RubyObj):RubyObj
+  end
+end
+
+then using it blows chunks...
+
+
+
+
+interface MyInterface do
+  def run(a:int); end
+end
+def go(block:MyInterface)
+  block.run(3)
+end
+go { 4; nil }
+
+Inference Error:
+Inferred return type Type(int) is incompatible with declared Type(null)
+
+so...maybe interfaces should be *required* to note the return type? huh?
+
+
+
 possible bug:
 
 a = 3
@@ -5,8 +37,10 @@ a = 3.times {
   nil
 }
 
-failz
+failz on assignment...not sure if I care though...
 
+
+puts 'past go', a # failz...
 
 
 ruby-zy array stuffs...
@@ -24,6 +58,9 @@ or
 
 fib_array[23] ?  should it infer "get" 
 [] << 4  ? should it infer...add ?
+
+
+does their inferred self actually infer self LOL.
 
 
 does mirah want to be able to do things like that, or 

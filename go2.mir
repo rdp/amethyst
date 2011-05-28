@@ -36,12 +36,13 @@ interface CallableOneArg do
 end
 
 interface TimesZeroArgBlockOneArg do
-  def times2(block:CallableOneArg):RubyObj
+  def times(block:CallableOneArg):RubyObj
   end
 end
 
 # should I make this class static? cache it [in a hash]?
 class RubyInt < RubyObj
+  
   implements ImplementsToI
   implements TimesZeroArgBlockOneArg
   implements ImplementsMinusOneArg
@@ -84,22 +85,17 @@ class RubyInt < RubyObj
   end
 
   $Override
-  def times2(block:CallableOneArg):RubyObj
+  def times(call_me:CallableOneArg):RubyObj
     x = 0
     #for(x = 0; x < @a; x += 1) # ??
     while x < @a
-        block.call(RubyInt.new(x)) # XXXX reuse the rubyint obj? make it frozen too somehow? FrozenRubyInt?
-#     x++# ?
+        call_me.call(RubyInt.new(x)) # XXXX reuse the rubyint obj? make it frozen too somehow? FrozenRubyInt?
+        #     x++# ? filed...
         x += 1
     end
     self
   end
 
-end
-
-interface CallableOneArg do
-  def call(arg1:RubyObj):RubyObj
-  end
 end
 
 interface BracketOneArg do
@@ -139,32 +135,37 @@ end
 RubyInt.new(1) - RubyInt.new(2)
 RubyInt.new(1) + RubyInt.new(2)
 
-# RubyInt.new(1).times { } # ??
-
 RubyInt.new(1).times do |n| 
   3
+  nil
 end
 
-RubyInt.new(1).times { |n| 
-  3
-}
+RubyInt.new(1).times do |n| 
+  RubyInt.new(1)
+end
 
-# RubyInt.new(1).times2 do |n| # ?? ICE ?
+#RubyInt.new(1).times do |n| # ?? ICE ?
+#end
+#3.times do |n|
   
+#end
+
+# 
+# def calcFibN(num:RubyObj)
+#   fib_array = RubyArray.new [RubyInt.new(0), RubyInt.new(1)]
+#   
+# #  TimesZeroArgBlockOneArg(num-RubyInt.new(2)).times2 do |i| # ??
+#   RubyInt.new(ImplementsMinusOneArg(num)-RubyInt.new(2)).to_i.times do |i|
+#     # XXXX not need RubyObj class...I think...for now...
+#     fib_array.add(RubyObj(fib_array[i]) + RubyObj(fib_array.get(i+1)))
+#   end
+#   # puts fib_array
 # end
+# 
+# 3_000_000.times {
+#   calcFibN(RubyInt.new(30))
+# }
+# 
 
-def calcFibN(num:RubyObj)
-  fib_array = RubyArray.new [RubyInt.new(0), RubyInt.new(1)]
-  
-#  TimesZeroArgBlockOneArg(num-RubyInt.new(2)).times2 do |i| # ??
-  RubyInt.new(ImplementsMinusOneArg(num)-RubyInt.new(2)).to_i.times do |i|
-    # XXXX not need RubyObj class...I think...for now...
-    fib_array.add(RubyObj(fib_array[i]) + RubyObj(fib_array.get(i+1)))
-  end
-  # puts fib_array
-end
 
-3_000_000.times {
-  calcFibN(RubyInt.new(30))
-}
-
+puts 'worked'
