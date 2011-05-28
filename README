@@ -1,0 +1,8 @@
+Some experiments with speed timing of using basically generic
+
+public Object my_method(Object arg1, Object arg2) {
+
+
+}
+
+but written so that it looks like standard ruby. Suggestions welcome!

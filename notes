@@ -1,3 +1,14 @@
+possible bug:
+
+a = 3
+a = 3.times {
+  nil
+}
+
+failz
+
+
+
 ruby-zy array stuffs...
 
 [] << 4
@@ -65,3 +76,6 @@ it needs to check for nil *or* false in if statements...[or does mirah already d
 maybe I can let it parse their code along with the sum of the original mirah code iff they make changes to core classes?
 
 [todo: can mirah add to classes later, easily, yet?]
+
+
+might be nice to have call by arg name as method_name(:abc => :def) or what not. Yeah.  If they want a hash they have to make it explicit? hmm...

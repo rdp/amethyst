@@ -1,1 +1,14 @@
+build fails
+
 run the fake fib against rubinius, java plain +- ints :P
+
+
+cache to speedup
+
+can run scripted jruby.rb scripting java files LOL
+
+a "to ruby and back" bridge?
+
+do we need to wrap ruby classes in their own little wrapper classes? (auto, manual...)
+
+macros/erb/clojure...

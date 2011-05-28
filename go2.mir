@@ -1,6 +1,6 @@
 import java.util.ArrayList
 
-# guess we don't need this at all then? could just use Object everywhere, with my fine tuned interfaces?
+# guess we don't need this at all then? could just use Object everywhere, with the fine tuned interfaces?
 
 class RubyObj
 
@@ -107,29 +107,28 @@ interface BracketOneArg do
   end
 end
 
-# interfaces are loosy-goosey! Suh-weet!
+# interfaces are loosy-goosey! Yes!
 
-class RubyArray < ArrayList # ArrayList<RubyObj>
+class RubyArray < ArrayList # ArrayList<RubyObj> ??
   implements BracketOneArg
+  
   #def <<(o:RubyObj) # ??
   #  add o
   #end
 
   def [](idx:RubyObj):RubyObj 
-    # call to_i is what ruby seems to always do...
+    # calling to_i is what ruby seems to always do...
     RubyObj(get(ImplementsToI(idx).to_i))
   end
   
-
-  # do we really need this? hmm...
-  def [](idx:int):RubyObj # ImplementsToI ? ImplementsToI# [1,2,3][fake_obj] =>     TypeError: can't convert Yo to Integer (Yo#to_int gives Array)
-    RubyObj(get(idx))
-  end
+# do we really need this? hmm...
+#  def [](idx:int):RubyObj # ImplementsToI ? ImplementsToI# [1,2,3][fake_obj] =>     TypeError: can't convert Yo to Integer (Yo#to_int gives Array)
+#    RubyObj(get(idx))
+#  end
 
   def initialize(o:java.util.List)
-    #    super # should work?
-    #    super(o) # should work?
-    #puts 'in init' # we get here...
+    #    super # ??
+    #    super(o) # ??
     addAll(o)
   end
 
@@ -139,16 +138,20 @@ end
 
 RubyInt.new(1) - RubyInt.new(2)
 RubyInt.new(1) + RubyInt.new(2)
+
 # RubyInt.new(1).times { } # ??
 
-# RubyInt.new(1).times do |n| ??
+RubyInt.new(1).times do |n| 
+  3
+end
+
+RubyInt.new(1).times { |n| 
+  3
+}
+
+# RubyInt.new(1).times2 do |n| # ?? ICE ?
   
 # end
-
-
-RubyInt.new(1).times2 do |n|
-  
-end
 
 def calcFibN(num:RubyObj)
   fib_array = RubyArray.new [RubyInt.new(0), RubyInt.new(1)]
