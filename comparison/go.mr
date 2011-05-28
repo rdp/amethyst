@@ -1,9 +1,5 @@
 import java.util.ArrayList
 
-def less_than__less_than
-end
-
-
 def calcFibN(num:int)
      fib_array = ArrayList.new [0,1]
      (num-2).times do |i|
@@ -11,6 +7,7 @@ def calcFibN(num:int)
      end
 #     puts fib_array
 end
+
 3_000_000.times {
   calcFibN(30)
 }

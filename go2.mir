@@ -88,14 +88,25 @@ class RubyInt < RubyObj
   def toString # any way to provide for free?
     '' + @a
   end
+  
+  # this is unsafe though, I think...
+  # because what if somebody says
+  # 45.times { |n| if b == 45; d = b; end}
+  # I'd still be down with ++ though, as a way to optionally optimize local values et al...
+  # or maybe not?
+  def __assign(toThis:int)
+    @a = toThis
+  end
 
   $Override
   def times(call_me:CallableOneArg):RubyObj
     x = 0
     #for(x = 0; x < @a; x += 1) # ??
+    #    subject = RubyInt.new(x)
     while x < @a
-        call_me.call(RubyInt.new(x)) # XXXX reuse the rubyint obj? make it frozen too somehow? FrozenRubyInt?
-        #     x++# ? filed...
+        # subject.__assign(x)
+        call_me.call(RubyInt.new(x)) # XXXX reuse the rubyint obj? make it frozen too somehow? FrozenRubyInt? Hmm...went from 4.55 to 4.35 :P
+        #     x++ # ?? filed...
         x += 1
     end
     self
@@ -134,12 +145,6 @@ class RubyArray < ArrayList # ArrayList<RubyObj> ??
   
 end
 
-
-RubyInt.new(1).times do |n| 
-  RubyInt.new(1)
-end
-
-
 def calcFibN(num:RubyObj)
   fib_array = RubyArray.new [RubyInt.new(0), RubyInt.new(1)]
   
@@ -152,12 +157,11 @@ def calcFibN(num:RubyObj)
     new_entry = ImplementsPlusOneArg(fib_array[i]) + fib_array[eyePlusOne]
     # add it to array
     ImplementsLessThanLessThanOneArg(fib_array).lessThanLessThan(new_entry)
-    nil
   end
-   puts fib_array
+  # puts fib_array
 end
 
-# specs :)
+# specs :P
 #RubyInt.new(1) - RubyInt.new(2)
 #RubyInt.new(1) + RubyInt.new(2)
 
@@ -172,10 +176,9 @@ end
 
 #RubyInt.new(1).times do |n| # ICE
 #end
-
  
 3_000_000.times {
   calcFibN(RubyInt.new(30))
 }
 
-puts 'worked'
+#puts 'worked'

@@ -8,6 +8,6 @@ def calcFibN(num)
      end
      #fib_array.join(", ")
 end
-30_00_000.times {
+3_000_000.times {
   calcFibN(30)
 }
