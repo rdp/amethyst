@@ -60,6 +60,11 @@ raise 'bad3' unless Implements__equals(one).equals(two)
 
 
 i = RubyArray.new # empty constructor <sigh>
+i.add(RubyInt.new(1))
+# lodo uses []'s
+raise 'bad4' unless Implements__get(i).get(RubyInt.new(0)).equals(RubyInt.new(1))
+raise 'bad4.5' if Implements__get(i).get(RubyInt.new(0)).equals(RubyInt.new(2))
+raise 'bad5' unless Implements__get(i).get(RubyInt.new(0)).equals Implements__get(i).get(RubyInt.new(0))
 
 puts 'all specs passed'
 

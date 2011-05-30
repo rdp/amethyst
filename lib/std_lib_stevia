@@ -8,6 +8,7 @@ import java.util.Collections
 # eventually we'll probably need this class for doing the "system" or whatever the Kernel shtuff is...
 # Note that I've munged -, +, and <<, and should munge == and []= though the latter might be ok...
 # ___plus lessThan
+# appears that [] also doesn't compile down to java...sigh...
 #
 
 class RubyObj
@@ -36,6 +37,11 @@ interface Implements__equals do
   
   # I wonder if there's a better way somehow...like class RubyInt: def equals(RubyInt); but I can't think of one right now off the top of my head.
   
+  end
+end
+
+interface Implements__get do
+  def get(o:RubyObj):RubyObj
   end
 end
 
@@ -103,7 +109,14 @@ class RubyArray < ArrayList # ArrayList<RubyObj> ?? < RubyObj ?
     add o
     o
   end
+  
+  implements Implements__get
 
+  $Override
+  def get(idx:RubyObj) # XXXX why can't it infer this one either?
+    RubyObj(get(ImplementsToJavaI(idx).to_java_i))
+  end
+  
   def [](idx:RubyObj):RubyObj 
     # calling to_i is what ruby seems to always do...
     # RubyInt i = ... LODO allow non core classes to be offsets...or maybe I should force them to call their own to_i I'm down with that :P
@@ -111,6 +124,7 @@ class RubyArray < ArrayList # ArrayList<RubyObj> ?? < RubyObj ?
   end
   
   # TODO []=
+  
   def initialize
     super
   end
