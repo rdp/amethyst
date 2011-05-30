@@ -1,4 +1,7 @@
-#/bin/ruby
+#
+# the std lib/common interfaces
+#
+
 import java.util.ArrayList
 
 # eventually we'll probably need this for doing "system" or whatever the Kernel shtuff is...
@@ -144,4 +147,6 @@ class RubyArray < ArrayList # ArrayList<RubyObj> ??
   end
   
 end
+
+# for demo of what the actual stevia code looks like, see profile_stev class
 
