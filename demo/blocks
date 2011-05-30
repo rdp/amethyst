@@ -1,0 +1,43 @@
+# 3.times { |n| puts n } 
+#
+# becomes this mirah...
+# 
+
+class RubyLikeObj
+end
+
+interface CallableOneArg do
+  def call(arg1:RubyLikeObj):RubyLikeObj
+  end
+end
+
+class StdLibFixnum < RubyLikeObj
+  implements Implements_times_one_arg_block_one_arg
+  
+  @internal_val
+  def initialize(incoming:int)
+   @internal_val = incoming
+  end
+  
+  $Override
+  def times(call_this)
+    a = 0
+    while(a < @internal_val)
+      call_this.call(StdLibFixnum.new(a))
+      a += 1
+    end
+    self
+  end
+  
+  def toString
+   '' + int(@internal_val)
+  end
+  
+end
+
+interface Implements_times_one_arg_block_one_arg do
+  def times(b:CallableOneArg):RubyLikeObj
+  end
+end
+
+Implements_times_one_arg_block_one_arg(StdLibFixnum.new(3)).times { |n| puts n; nil}

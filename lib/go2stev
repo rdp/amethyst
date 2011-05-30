@@ -40,10 +40,14 @@ interface ImplementsToI do
   end
 end
 
+# LODO should blocks descend from some rubyobj interface maybe?
+
 interface CallableOneArg do
   def call(arg1:RubyObj):RubyObj
   end
 end
+
+# LODO within the class, don't need to define parameters, do need $Overide
 
 interface TimesZeroArgBlockOneArg do
   def times(block:CallableOneArg):RubyObj
