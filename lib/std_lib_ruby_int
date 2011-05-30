@@ -1,0 +1,93 @@
+
+# should I make this class static? cache it [in a hash]?
+class RubyInt < RubyObj
+
+  class OverFlowException < Exception
+    def initialize(s:String)
+     super(s)
+    end
+  end
+  implements ImplementsToJavaI
+  implements TimesZeroArgBlockOneArg
+  implements ImplementsMinusOneArg
+  implements ImplementsPlusOneArg
+  implements ImplementsLessThanLessThanOneArg2
+  implements Implements__equals
+  
+  $Override
+  def equals(o:Object):boolean
+    @a == ImplementsToJavaI(o).to_java_i # we get here for certain calls...little bit scary to interoperate, but here we are :P
+  end
+
+  $Override
+  def equals(o:RubyObj)
+    @a == ImplementsToJavaI(o).to_java_i
+  end
+
+  def initialize(a:int)
+    @a = a
+  end
+  
+  def initialize(incoming:RubyObj)
+    @a = ImplementsToJavaI(incoming).to_java_i
+  end
+
+  $Override
+  def ___plus(o:RubyObj) 
+    # overflow detection garnered from http://drdobbs.com/security/210500001
+    b = ImplementsToJavaI(o).to_java_i
+    r = @a + b
+    if(( (@a^r) & (b^r) ) < 0)
+      raise OverFlowException.new 'overflow addition'
+    end
+    RubyInt.new(r)
+  end
+  
+  $Override
+  def ___minus(o:RubyObj):RubyObj
+    b = ImplementsToJavaI(o).to_java_i
+    r = @a - b
+    if(( (@a^r) & (b^r) ) < 0)
+     # TODO raise OverFlowException.new 'overflow subtraction ' + @a + ' - ' + b
+    end
+    RubyInt.new(r)
+  end
+
+  $Override
+  def to_java_i():int
+    @a
+  end
+
+  $Override
+  def toString # any way to provide for free automagically... ?
+    '' + @a
+  end
+  
+  # 
+  # this is unsafe though, I think...
+  # because what if somebody says
+  # 45.times { |n| if b == 41; d = b; end} # and I re-use the entry value
+  # they will become confused
+  # LODO make this ruby-accessible though, for the casual user :P
+  def ___succ!
+    @a += 1 # ++
+  end
+
+  $Override
+  def times(block:CallableOneArg):RubyObj
+    x = 0
+    while x < @a
+        block.call(RubyInt.new(x)) # XXXX reuse the rubyint obj? make it frozen too somehow? FrozenRubyInt? Hmm...went from 4.55 to 4.35 :P
+        x += 1
+    end
+    self
+  end
+  
+  implements ImplementsLessThanOneArg
+  $Override # lodo take off -> fail?
+  def lessThan(o:RubyObj):boolean
+    @a < ImplementsToJavaI(o).to_java_i
+  end
+  
+end
+
