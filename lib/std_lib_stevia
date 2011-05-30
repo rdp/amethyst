@@ -8,6 +8,7 @@ import java.util.ArrayList
 
 # Note that I've munged -, +, and <<, and should munge == and []= though the latter might be ok...
 
+# ___plus
 class RubyObj
 
   def this

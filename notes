@@ -1,5 +1,10 @@
+
+performance hit of checking for overflow:
+ 4.15 (~4.2) before, 4.36 (~4.42) (at times) after. meh :P
+
 unable to infer type: https://github.com/rdp/stevia/commit/0a233105bf7ebc51ede991efdc270dd17811a59f argh! matey! needs a better error message! arrr!
 
+it should not let you define the same interface twice, same methods. No that is scawah.
 
 class Yo
  def equals(o:Object)

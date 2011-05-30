@@ -25,11 +25,26 @@ end
 
 raise 'equals failed!' unless RubyInt.new(1486).equals(RubyInt.new(1486))
 
-raise 'bad1' if c.equals RubyInt.new(14)
-raise 'bad2' unless c.equals RubyInt.new(1486)
+begin
+ c.equals RubyInt.new(14) # expected to fail really...
+ puts 'YOU SHOULD NEVER SEE THIS' # dunno how to catch Throwable...
+rescue RuntimeException
+end
 
-# we could leave == as .equals, hmmm...that sounds like more work though :P
+# we maybe could leave == as .equals, hmmm...that sounds like more work though :P
 
-e = (c.equals RubyInt.new(1486)) # native boolean type...scawah!
+e = (c == RubyInt.new(1486)) # native boolean type...scawah!
+f = (Implements__equals(c).equals(RubyInt.new(1487))) # native boolean type...scawah!
+raise if f
+
+g = RubyInt.new(Integer.MAX_VALUE - 30 )
+h = ImplementsPlusOneArg(g).___plus RubyInt.new(15) # not overflow, just close :P
+got_here = false
+begin
+  h = ImplementsPlusOneArg(g).___plus RubyInt.new(33) # overflow!
+rescue Exception
+  got_here = true
+end
+raise unless got_here
 
 puts 'specs passed'

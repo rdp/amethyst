@@ -17,6 +17,12 @@ symbols
 
 == LODO ==
 
+some type of reflection enumeration...though I guess java has my back there :P
+ability to use .send in order to run unit tests (again, java has my back there)
+
+a demo of me calling into raw java shtuffs...and it work :P
+
+
 http://code.google.com/p/mirah/issues/detail?id=68 java.lang.NoSuchFieldError: c the wrong byte code...if I ever want to use mirah stevia_specs again :P
 
 @mirah: reopena-ble classes? plz?

@@ -14,6 +14,9 @@ class go {
   }
 
   public static void main(String[] args) {
+    int a = 1;
+    int b = a ^ a;
+    
     for(int i = 0; i < 3000000; i++) {
       calcFibN(30);
     }
