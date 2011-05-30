@@ -8,6 +8,21 @@ import java.util.ArrayList
 
 class RubyObj
 
+  $Override
+  def equals(o:Object):boolean
+    raise 'not implemented' # the inner classes need to implement this or they are hosed
+  end
+
+end
+
+interface Implements__equals do
+
+  def equals(o:RubyObj):boolean # I guess this will force them to output a boolean last statement, which is ok
+  # what about them wanting to be able to output void (or "a boolean here" or what not...)
+  
+  # I wonder if there's a better way somehow...like class RubyInt: def equals(RubyInt); but I can't think of one right now off the top of my head.
+  
+  end
 end
 
 interface ImplementsLessThanLessThanOneArg do
@@ -22,12 +37,12 @@ end
 
 
 interface ImplementsMinusOneArg do
-  def -(o:RubyObj):RubyObj
+  def ___minus(o:RubyObj):RubyObj
   end
 end
 
 interface ImplementsPlusOneArg do
-  def +(o:RubyObj):RubyObj
+  def ___plus(o:RubyObj):RubyObj
   end
 end
 
@@ -48,69 +63,6 @@ end
 interface TimesZeroArgBlockOneArg do
   def times(block:CallableOneArg):RubyObj
   end
-end
-
-# should I make this class static? cache it [in a hash]?
-class RubyInt < RubyObj
-  
-  implements ImplementsToJavaI
-  implements TimesZeroArgBlockOneArg
-  implements ImplementsMinusOneArg
-  implements ImplementsPlusOneArg
-  implements ImplementsLessThanLessThanOneArg2
-  
-  def initialize(a:int)
-    @a = a
-  end
-  
-  def initialize(incoming:RubyObj)
-    @a = ImplementsToJavaI(incoming).to_java_i
-  end
-  
-  $Override
-  def +(o:RubyObj) # Object? prolly wouldnt help me here...
-    # @a is an int
-    RubyInt.new(@a + ImplementsToJavaI(o).to_java_i)
-  end
-  
-  # XXX overflow ?
-
-  $Override
-  def -(o:RubyObj):RubyObj
-    outgoing = @a - ImplementsToJavaI(o).to_java_i
-    RubyInt.new(outgoing)
-  end
-
-  $Override
-  def to_java_i():int
-    @a
-  end
-
-  $Override
-  def toString # any way to provide for free?
-    '' + @a
-  end
-  
-  # 
-  # this is unsafe though, I think...
-  # because what if somebody says
-  # 45.times { |n| if b == 41; d = b; end} # and I re-use the entry value
-  # they will become confused
-  # LODO make this ruby-accessible though, for the casual user :P
-  def ___succ!
-    @a += 1 # ++
-  end
-
-  $Override
-  def times(block:CallableOneArg):RubyObj
-    x = 0
-    while x < @a
-        block.call(RubyInt.new(x)) # XXXX reuse the rubyint obj? make it frozen too somehow? FrozenRubyInt? Hmm...went from 4.55 to 4.35 :P
-        x += 1
-    end
-    self
-  end
-
 end
 
 interface BracketOneArg do
@@ -137,6 +89,8 @@ class RubyArray < ArrayList # ArrayList<RubyObj> ??
     RubyObj(get(ImplementsToJavaI(idx).to_java_i))
   end
   
+  # TODO []=
+  
   def initialize(o:java.util.List)
     addAll(o) # super doesn't work [bug]
   end
@@ -147,19 +101,3 @@ end
 
 # same dir means same package ja?
 # require 'go2.mir'
-
-# specs :P
-
-#RubyInt.new(1) - RubyInt.new(2)
-#RubyInt.new(1) + RubyInt.new(2)
-
-RubyInt.new(1).times do |n| 
-  3
-  nil
-end
-
-RubyInt.new(1).times do |n| 
-  RubyInt.new(1)
-end
-
-puts 3

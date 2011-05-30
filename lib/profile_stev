@@ -3,17 +3,14 @@
 
 def calcFibN(num:RubyObj)
   fib_array = RubyArray.new [RubyInt.new(0), RubyInt.new(1)]
-   one = RubyInt.new(1)
-   a = RubyInt.new(1) + one
-   TimesZeroArgBlockOneArg(ImplementsMinusOneArg(num)-RubyInt.new(2)).times do |i|
-    a
+   TimesZeroArgBlockOneArg(ImplementsMinusOneArg(num).___minus RubyInt.new(2)).times do |i|
     # ruby:  fib_array << (fib_array[i] + fib_array[i+1])
     # a bit ugly, but this is how it'll turnout/look in the end...
-    ImplementsLessThanLessThanOneArg(fib_array).lessThanLessThan(ImplementsPlusOneArg(fib_array[i]) + fib_array[ImplementsPlusOneArg(i) + RubyInt.new(1)])
+    ImplementsLessThanLessThanOneArg(fib_array).lessThanLessThan(ImplementsPlusOneArg(fib_array[i]).___plus fib_array[ImplementsPlusOneArg(i).___plus RubyInt.new(1)])
   end
   # puts fib_array
 end
-def go
+
 thirty = RubyInt.new(30)
 
 3_000_000.times {
@@ -21,4 +18,3 @@ thirty = RubyInt.new(30)
 }
 
 puts 'profile done'
-end

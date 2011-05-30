@@ -1,0 +1,33 @@
+# same dir means same package ja?
+# require 'go2.mir'
+
+# specs :P
+
+#RubyInt.new(1) - RubyInt.new(2) # java compile bug
+#RubyInt.new(1) + RubyInt.new(2)
+
+b = 1
+RubyInt.new(2).times do |n| 
+# ICE  b += ImplementsToJavaI(n).to_java_i
+  b += 1
+  nil
+end
+
+raise 'yo1' unless b == 3
+
+raise 'yo2' unless ImplementsToJavaI((RubyInt.new(1).___minus RubyInt.new(2))).to_java_i == -1
+
+c = RubyObj(nil)
+c = RubyInt.new(1)
+#d = rubyInt.new(1)
+
+RubyInt.new(55).times do |n| 
+  c = ImplementsPlusOneArg(c).___plus n
+#  ImplementsPlusOneArg(d) += RubyInt.new(1)
+end
+
+raise 'equals failed!' unless RubyInt.new(1486).equals(RubyInt.new(1486))
+
+raise 'bad' unless c.== RubyInt.new(1486)
+
+puts 'specs done'

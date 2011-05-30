@@ -1,3 +1,18 @@
+
+
+I can just allow mirah to infer the return type as boolean or RubyObj I think that'll work..I believe so.
+
+there are three classes of methods.
+   abc!? # mirah land only -- not worth it for me
+   == # never use!
+   +- # mirah land only
+    << # not even mirah can handle this one? NativeException: java.lang.ClassFormatError: Illegal method name "<<" in class Testy
+
+nice would be an option to have java line numbers [?] I guess it already does through the java compiler...yeah.
+
+Note that I've munged -, +, and <<, and should munge == and []= though the latter might be ok...
+
+
 java straight, with Integers:
   3.70
 
