@@ -13,7 +13,7 @@ def calcFibN(num:RubyObj)
   end
   # puts fib_array
 end
-
+def go
 thirty = RubyInt.new(30)
 
 3_000_000.times {
@@ -21,4 +21,4 @@ thirty = RubyInt.new(30)
 }
 
 puts 'profile done'
-
+end

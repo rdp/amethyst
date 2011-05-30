@@ -5,11 +5,15 @@
 
 #RubyInt.new(1) - RubyInt.new(2)
 #RubyInt.new(1) + RubyInt.new(2)
-
+a = 3
 RubyInt.new(1).times do |n| 
   3
+# ICE  b += ImplementsToJavaI(n).to_java_i
+#  b += 1
   nil
 end
+
+#puts b
 
 RubyInt.new(1).times do |n| 
   RubyInt.new(1)

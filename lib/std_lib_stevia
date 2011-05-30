@@ -1,19 +1,12 @@
 #
-# the std lib/common interfaces
+# the std lib/common hand-brew interfaces
 #
 
 import java.util.ArrayList
 
-# eventually we'll probably need this for doing "system" or whatever the Kernel shtuff is...
-class RubyObj
+# eventually we'll probably need this class for doing the "system" or whatever the Kernel shtuff is...
 
-  # def +(o:Object):RubyObj # rubyobj???
-  #   raise 'not yet implemented'
-  # end
-  # 
-  # def -(o:RubyObj):RubyObj # ?? do we need minus here or...should it be ImplementsMinus prolly the latter
-  #   raise 'not yet implemented'
-  # end
+class RubyObj
 
 end
 
