@@ -21,6 +21,10 @@ describe Parser do
      convert("puts 3").should == "puts RubyInt.new(3)"  
   end
   
+  it "should work with arrays" do
+     convert("fib_array = []").should == "fib_array = RubyArray.new []"
+  end
+  
   # ... go.rb :P
   
 end

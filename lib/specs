@@ -58,6 +58,9 @@ raise 'bad3' if Implements__equals(one).equals(two)
 one.sort
 raise 'bad3' unless Implements__equals(one).equals(two)
 
+
+i = RubyArray.new # empty constructor <sigh>
+
 puts 'all specs passed'
 
 

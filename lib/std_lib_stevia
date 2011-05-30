@@ -94,6 +94,7 @@ end
 
 class RubyArray < ArrayList # ArrayList<RubyObj> ?? < RubyObj ?
   implements BracketOneArg, ImplementsLessThanLessThanOneArg
+  
   #def <<(o:RubyObj) # ??
   #  add o
   #end
@@ -110,12 +111,15 @@ class RubyArray < ArrayList # ArrayList<RubyObj> ?? < RubyObj ?
   end
   
   # TODO []=
+  def initialize
+    super
+  end
   
   def initialize(o:java.util.List)
     addAll(o) # super doesn't work [bug]
   end
   
-  # NB this is actually sort!
+  # NB this is actually sort! [sort bang]
   
   def sort
     Collections.sort(self) {|a,b| ImplementsLessThanOneArg(RubyObj(a)).lessThan(RubyObj(b)) ? 0 : 1}

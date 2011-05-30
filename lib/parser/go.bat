@@ -1,1 +1,1 @@
-j spec_parser.rb
+j spec_parser.rb %*
