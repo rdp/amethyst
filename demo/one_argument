@@ -1,0 +1,23 @@
+class RubyLikeObj
+end
+
+class StdLibFixnum < RubyLikeObj
+  @internal_val
+  def initialize(incoming:int)
+   @internal_val = incoming
+  end
+end
+
+interface Implements_go_one_arg do
+  def go(a:RubyLikeObj):RubyLikeObj
+  end
+end
+
+class A
+  implements Implements_go_one_arg
+  def go(a)
+    a
+  end
+end
+
+Implements_go_one_arg(A.new).go(StdLibFixnum.new(3))
