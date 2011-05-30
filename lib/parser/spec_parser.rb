@@ -1,3 +1,5 @@
+require 'rubygems'
+require 'stringio'
 require 'parser'
 require 'rspec/autorun'
 
