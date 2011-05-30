@@ -1,3 +1,11 @@
+java straight, with Integers:
+  3.70
+
+jdk6 jruby server: 25.14 25.23
+jdk7 jruby server: 25.65 25.37
+jdk7 jruby client: 48.47
+
+
 using a cached "one" without the block took me back down to 4.43...cacheing dubious in this case... ?
 
 adding in "more interfaces" seemed to not cause any problem to times.
