@@ -1,16 +1,83 @@
-build fails
+what does cacheing/cleanup save me?
+
+what does lots of methods dis-save me?
+
+
+cleanup go2.mir, constant-ify
+
+implements -> real method name
+
+add some extra garbage in there, to see if I can slow it down
 
 run the fake fib against rubinius, java plain +- ints :P
 
+a "to jruby and parse the return" bridge
+  return parser... :P
 
-cache to speedup
+fix http://code.google.com/p/mirah/issues/detail?id=50 []= not working
+
+a parser generator [redparse]?
+
+"constant-ify" int literals et al...I think...string literals not so much :P
+
+email mirah "is this is a good idea" what other work is like this?
+
+symbols
+
+possibly fix the @@bug so I can use real cacheing [?[
+]]
+== LODO ==
+
+auto ruby class -> mirah wrapper generator LOL
+
+inline docu/source location somehow?
+
+repl
+
+2+2
+
+sinatra :P
+
+alioth benchmarks? 
+
+tell mirah they should auto-generate shpiffy hashcode and toStrings for me :)
+
+@mirah: change parameter names if I use _.  Please?
+  repl
+
+is invokedynamic faster somehow?
+
+@mirah: $Override seemingly does nothing [?] -- also if it says it Implements x it doesn't verify that it does
+  no for loop possible?
+  super doesn't work?
+  hashcode, !? methods
+  
+import scala.collection.mutable.HashSet for Hashes [?]
+
+named parameters LOL
+
+[1,2,3].threaded(5) { |t|
+  t.map{|e| e.to_string}.reject{}.reject! [?]
+  33
+  t.synchronize_once.map{|t| t.yoyo}.in_order.map{|t|}.synchronize_once.in_order.map{|t|} LOL if anybody ever asks for those.
+  
+  First pass: just map! map! map! LOL
+
+}
+
+
+auto-promotion of ints et al [see if it's slower to just use long...]
+
+can call java straight, a la
+
+real_java_class.real_java_method(arg1.to_jint, arg2.to_jint)
+
+cache to speedup parsing
 
 can run scripted jruby.rb scripting java files LOL
-
-a "to ruby and back" bridge?
-
-do we need to wrap ruby classes in their own little wrapper classes? (auto, manual...)
 
 macros/erb/clojure...
 
 some inspect-er method?
+
+nutter blog response?

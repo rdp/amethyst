@@ -1,7 +1,7 @@
+#/bin/ruby
 import java.util.ArrayList
 
-# guess we don't need this at all then? could just use Object everywhere, with the fine tuned interfaces?
-
+# eventually we'll probably need this for doing "system" or whatever the Kernel shtuff is...
 class RubyObj
 
   # def +(o:Object):RubyObj # rubyobj???
@@ -19,6 +19,12 @@ interface ImplementsLessThanLessThanOneArg do
   end
 end
 
+interface ImplementsLessThanLessThanOneArg2 do
+  def lessThanLessThan33(o:RubyObj):RubyObj
+  end
+end
+
+
 interface ImplementsMinusOneArg do
   def -(o:RubyObj):RubyObj
   end
@@ -28,7 +34,6 @@ interface ImplementsPlusOneArg do
   def +(o:RubyObj):RubyObj
   end
 end
-
 
 interface ImplementsToI do
   def to_i():int
@@ -52,7 +57,8 @@ class RubyInt < RubyObj
   implements TimesZeroArgBlockOneArg
   implements ImplementsMinusOneArg
   implements ImplementsPlusOneArg
-
+  implements ImplementsLessThanLessThanOneArg2
+  
   def initialize(a:int) # numeric ?
     @a = a
   end
@@ -62,11 +68,6 @@ class RubyInt < RubyObj
   end
   
   $Override
-  def yoyo()
-  end
-  
-
-  $Override # ?? doesn't actually do anything?
   def +(o:RubyObj) # Object? prolly wouldnt help me here...
     # @a is an int
     RubyInt.new(@a + ImplementsToI(o).to_i)
@@ -89,24 +90,21 @@ class RubyInt < RubyObj
     '' + @a
   end
   
+  # 
   # this is unsafe though, I think...
   # because what if somebody says
-  # 45.times { |n| if b == 45; d = b; end}
-  # I'd still be down with ++ though, as a way to optionally optimize local values et al...
-  # or maybe not?
-  def __assign(toThis:int)
-    @a = toThis
+  # 45.times { |n| if b == 41; d = b; end} # and I re-use the entry value
+  # they will become confused
+  # LODO make this ruby-accessible though, for the casual user :P
+  def ___succ!
+    @a += 1 # ++
   end
 
   $Override
-  def times(call_me:CallableOneArg):RubyObj
+  def times(block:CallableOneArg):RubyObj
     x = 0
-    #for(x = 0; x < @a; x += 1) # ??
-    #    subject = RubyInt.new(x)
     while x < @a
-        # subject.__assign(x)
-        call_me.call(RubyInt.new(x)) # XXXX reuse the rubyint obj? make it frozen too somehow? FrozenRubyInt? Hmm...went from 4.55 to 4.35 :P
-        #     x++ # ?? filed...
+        block.call(RubyInt.new(x)) # XXXX reuse the rubyint obj? make it frozen too somehow? FrozenRubyInt? Hmm...went from 4.55 to 4.35 :P
         x += 1
     end
     self
@@ -138,9 +136,7 @@ class RubyArray < ArrayList # ArrayList<RubyObj> ??
   end
   
   def initialize(o:java.util.List)
-    #    super # ??
-    #    super(o) # ??
-    addAll(o)
+    addAll(o) # super doesn't work [bug]
   end
   
 end
@@ -148,7 +144,6 @@ end
 def calcFibN(num:RubyObj)
   fib_array = RubyArray.new [RubyInt.new(0), RubyInt.new(1)]
   
-#  TimesZeroArgBlockOneArg(num-RubyInt.new(2)).times2 do |i| # ??
    TimesZeroArgBlockOneArg(ImplementsMinusOneArg(num)-RubyInt.new(2)).times do |i|
   
     # XXXX not need RubyObj class...I think...
@@ -161,24 +156,10 @@ def calcFibN(num:RubyObj)
   # puts fib_array
 end
 
-# specs :P
-#RubyInt.new(1) - RubyInt.new(2)
-#RubyInt.new(1) + RubyInt.new(2)
-
-#RubyInt.new(1).times do |n| 
-#  3
-#  nil
-#end
-
-#RubyInt.new(1).times do |n| 
-#  RubyInt.new(1)
-#end
-
-#RubyInt.new(1).times do |n| # ICE
-#end
  
 3_000_000.times {
   calcFibN(RubyInt.new(30))
 }
 
 #puts 'worked'
+
