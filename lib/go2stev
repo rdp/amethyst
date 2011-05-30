@@ -145,28 +145,3 @@ class RubyArray < ArrayList # ArrayList<RubyObj> ??
   
 end
 
-def calcFibN(num:RubyObj)
-  fib_array = RubyArray.new [RubyInt.new(0), RubyInt.new(1)]
-  
-   TimesZeroArgBlockOneArg(ImplementsMinusOneArg(num)-RubyInt.new(2)).times do |i|
-  
-    # XXXX not need RubyObj class...I think...
-    #          fib_array << (fib_array[i] + fib_array[i+1])
-    eyePlusOne = ImplementsPlusOneArg(i)+ RubyInt.new(1)
-    new_entry = ImplementsPlusOneArg(fib_array[i]) + fib_array[eyePlusOne]
-    # add it to array
-    ImplementsLessThanLessThanOneArg(fib_array).lessThanLessThan(new_entry)
-  end
-  # puts fib_array
-end
-
-
-start = Time.now
-
-3_000_000.times {
-  calcFibN(RubyInt.new(30))
-}
-endy = Time.now
-
-#puts 'worked'
-

@@ -42,8 +42,8 @@ interface Implements_times_one_arg_block_one_arg do
   end
 end
 
-# end stdlib
-# begin real code
-# this was all manually generated :P
+# end stdlib code
+# begin real translated code
+# this was all manually generated BTW :P
 
 Implements_times_one_arg_block_one_arg(StdLibFixnum.new(3)).times { |n| puts n; n}

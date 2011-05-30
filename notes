@@ -1,3 +1,15 @@
+using a cached "one" without the block took me back down to 4.43...cacheing dubious in this case... ?
+
+adding in "more interfaces" seemed to not cause any problem to times.
+
+removing extra "local variables" within the method sped up to
+
+  server: 4.13 (from 4.5)
+  client: 12s
+  jruby server: 24 (6x)
+
+compared with ~4.01 for mirah straight now
+
 java -server Go2/mir
 worked
 4.5, 4.4

@@ -1,13 +1,4 @@
-what does cacheing/cleanup save me?
-
-what does lots of methods dis-save me?
-
-
-cleanup go2.mir, constant-ify
-
 implements -> real method name
-
-add some extra garbage in there, to see if I can slow it down
 
 run the fake fib against rubinius, java plain +- ints :P
 

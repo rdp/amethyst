@@ -1,0 +1,24 @@
+
+# use bash's "time" command to profile :)
+
+def calcFibN(num:RubyObj)
+  fib_array = RubyArray.new [RubyInt.new(0), RubyInt.new(1)]
+   one = RubyInt.new(1)
+   a = RubyInt.new(1) + one
+   TimesZeroArgBlockOneArg(ImplementsMinusOneArg(num)-RubyInt.new(2)).times do |i|
+    a
+    # ruby:  fib_array << (fib_array[i] + fib_array[i+1])
+    # a bit ugly, but this is how it'll turnout/look in the end...
+    ImplementsLessThanLessThanOneArg(fib_array).lessThanLessThan(ImplementsPlusOneArg(fib_array[i]) + fib_array[ImplementsPlusOneArg(i) + RubyInt.new(1)])
+  end
+  # puts fib_array
+end
+
+thirty = RubyInt.new(30)
+
+3_000_000.times {
+  calcFibN(thirty)
+}
+
+#puts 'worked'
+
