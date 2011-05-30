@@ -1,7 +1,9 @@
 # 3.times { |n| puts n } 
 #
 # becomes this mirah...
-# 
+# most of this is stdlib boiler plate
+# the last line would be what the conversion translates into
+#
 
 class RubyLikeObj
 end
@@ -40,4 +42,8 @@ interface Implements_times_one_arg_block_one_arg do
   end
 end
 
-Implements_times_one_arg_block_one_arg(StdLibFixnum.new(3)).times { |n| puts n; nil}
+# end stdlib
+# begin real code
+# this was all manually generated :P
+
+Implements_times_one_arg_block_one_arg(StdLibFixnum.new(3)).times { |n| puts n; n}
