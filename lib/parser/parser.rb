@@ -1,11 +1,10 @@
 require 'stringio'
-require 'redparse'
+require 'redparse' # 0.8.4 :)
 
 class RedParse
   class LiteralNode
       def unparse o=default_unparse_options
-                val=val()
-        p val, val.class
+        val=val()
         case val 
         when Fixnum
           "RubyInt.new(#{val.inspect})" # my own :P
@@ -28,6 +27,30 @@ class RedParse
 
       end
   end
+  
+ class OpNode
+  
+      def unparse o=default_unparse_options
+        p method(:unparse)
+        
+        result=l=left.unparse(o)
+        mapper = {'+' => ['ImplementsPlusOneArg', '___plus']}
+        # left looks like: ImplementsPlusOneArg(RubyInt.new(2)).
+        # then op: ___plus
+        # then "raw right"
+        
+        cast, method_name = mapper[op]
+        result = "#{cast}(#{l}).#{method_name} "
+        
+        result+=" "      if /\A(?:!|#{LCLETTER})/o===op
+        
+        #result+=op # sigh too scawah
+        
+        result+=" "         if /#{LETTER_DIGIT}\Z/o===op or / \Z/===l
+        result+=right.unparse(o)      
+      end
+  end
+  
 end
 
 
