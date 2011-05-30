@@ -12,7 +12,7 @@ end
 
 raise 'yo1' unless b == 3
 
-raise 'yo2' unless ImplementsToJavaI((RubyInt.new(1).___minus RubyInt.new(2))).to_java_i == -1
+raise 'yo2' unless ImplementsToJavaI((RubyInt.new(1).___minus RubyInt.new(2))).to_java_i == -1 # test negative numbers
 
 c = RubyObj(nil)
 c = RubyInt.new(1)
@@ -25,13 +25,11 @@ end
 
 raise 'equals failed!' unless RubyInt.new(1486).equals(RubyInt.new(1486))
 
-begin
- c.equals RubyInt.new(14) # expected to fail really...
- puts 'YOU SHOULD NEVER SEE THIS' # dunno how to catch Throwable...
-rescue RuntimeException
+if c.equals RubyInt.new(140000000)
+  raise 'bad'
 end
 
-# we maybe could leave == as .equals, hmmm...that sounds like more work though :P
+# we maybe could leave == as straight java .equals ...since we have to do it anyway prolly ...
 
 e = (c == RubyInt.new(1486)) # native boolean type...scawah!
 f = (Implements__equals(c).equals(RubyInt.new(1487))) # native boolean type...scawah!
@@ -47,4 +45,22 @@ rescue Exception
 end
 raise unless got_here
 
-puts 'specs passed'
+puts 'trying last'
+
+#raise 'bad1' unless RubyArray.new([RubyInt.new(1)]).equals(RubyArray.new([])) # ICE
+
+raise 'bad2' unless RubyArray.new([RubyInt.new(1)]).equals(RubyArray.new([RubyInt.new(1)]))
+
+one = RubyArray.new([RubyInt.new(3), RubyInt.new(2), RubyInt.new(1)])
+two = RubyArray.new([RubyInt.new(1), RubyInt.new(2), RubyInt.new(3)])
+
+raise 'bad3' if Implements__equals(one).equals(two)
+one.sort
+raise 'bad3' unless Implements__equals(one).equals(two)
+
+puts 'all specs passed'
+
+
+
+
+

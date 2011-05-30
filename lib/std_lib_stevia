@@ -3,24 +3,31 @@
 #
 
 import java.util.ArrayList
+import java.util.Collections
 
 # eventually we'll probably need this class for doing the "system" or whatever the Kernel shtuff is...
-
 # Note that I've munged -, +, and <<, and should munge == and []= though the latter might be ok...
+# ___plus lessThan
+#
 
-# ___plus
 class RubyObj
-
-  def this
-   self
-  end
+  # 
+  # def this
+  #  self # use self !
+  # end
 
   $Override
   def equals(o:Object):boolean
-    raise 'not implemented' + self.toString # the inner classes need to implement this or they are hosed
+    raise 'you are calling RubyObj.equals accidentally somehow [no implemented, or wrong method] ' + self.getClass.toString + " " + self.toString # the inner classes need to implement this or they are hosed
+  end
+  
+  def p(o:Object)
+    puts o
   end
 
 end
+
+# LODO I think I don't need Implements equals...I don't think so anyway...
 
 interface Implements__equals do
 
@@ -36,6 +43,12 @@ interface ImplementsLessThanLessThanOneArg do
   def lessThanLessThan(o:RubyObj):RubyObj
   end
 end
+
+interface ImplementsLessThanOneArg do
+  def lessThan(o:RubyObj):boolean
+  end
+end
+
 
 interface ImplementsLessThanLessThanOneArg2 do
   def lessThanLessThan33(o:RubyObj):RubyObj
@@ -79,7 +92,7 @@ end
 
 # interfaces are loosy-goosey! Yes!
 
-class RubyArray < ArrayList # ArrayList<RubyObj> ??
+class RubyArray < ArrayList # ArrayList<RubyObj> ?? < RubyObj ?
   implements BracketOneArg, ImplementsLessThanLessThanOneArg
   #def <<(o:RubyObj) # ??
   #  add o
@@ -100,6 +113,23 @@ class RubyArray < ArrayList # ArrayList<RubyObj> ??
   
   def initialize(o:java.util.List)
     addAll(o) # super doesn't work [bug]
+  end
+  
+  # NB this is actually sort!
+  
+  def sort
+    Collections.sort(self) {|a,b| ImplementsLessThanOneArg(RubyObj(a)).lessThan(RubyObj(b)) ? 0 : 1}
+    self
+  end
+  
+  implements Implements__equals
+  
+  $Override
+  def equals(o:RubyObj)
+    puts 'in array equal'
+        puts 'in array equal'
+
+    self.equals(Object(o)) # try to use ArrayList' equals method...
   end
   
 end

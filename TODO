@@ -1,6 +1,4 @@
-fake overflow
-
-implements -> real method name
+email mirah "is this is a good idea" what other work is like this?
 
 a "to jruby and parse the return" bridge
   return parser... :P
@@ -9,19 +7,36 @@ fix http://code.google.com/p/mirah/issues/detail?id=50 []= not working, so my ar
 
 a parser generator [redparse]?
 
+== LODO ==
+
+mirahc doesn't return right...
+
+c:\dev\ruby\stevia\lib>jruby -S mirahc std_lib_ruby_int
+Parsing...
+  std_lib_ruby_int
+Inferring types...
+Inference Error:
+Unable to infer type.
+std_lib_ruby_int:18: Unable to infer type.
+  def equals(o)
+             ^
+
+c:\dev\ruby\stevia\lib>echo %ERRORLEVEL%
+0
+backtraces on the command line
+
+named arguments LOL
+
+symbols at all LOL [strings for now... ?]
+
 "constant-ify" int literals et al...I think...string literals not so much :P
 
-email mirah "is this is a good idea" what other work is like this?
-
-symbols
-
-== LODO ==
+implements -> real method name
 
 some type of reflection enumeration...though I guess java has my back there :P
 ability to use .send in order to run unit tests (again, java has my back there)
 
 a demo of me calling into raw java shtuffs...and it work :P
-
 
 http://code.google.com/p/mirah/issues/detail?id=68 java.lang.NoSuchFieldError: c the wrong byte code...if I ever want to use mirah stevia_specs again :P
 
@@ -30,9 +45,9 @@ http://code.google.com/p/mirah/issues/detail?id=68 java.lang.NoSuchFieldError: c
 possibly fix the @@bug so I can use real cacheing [?[
 ]]
 
-make it so it can use a "ruby to_i" 
+make it so it can use a "ruby to_i"  except I might not want to since they can do that for me...maybe?
 
-random_object.
+[1,2,3][random_object] uh guess...
 
 auto ruby class -> mirah wrapper generator LOL
 
@@ -44,7 +59,7 @@ repl
 
 sinatra :P
 
-alioth benchmarks? 
+alioth benchmarks [run my stuff against them :P]
 
 tell mirah they should auto-generate shpiffy hashcode and toStrings for me :)
 

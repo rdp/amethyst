@@ -1,4 +1,8 @@
 
+
+inline sort should *be the default* give me a break!
+now select, reject, I'm ok with those being a copy...actually no I'm not.  That's ridiculous.
+
 performance hit of checking for overflow:
  4.15 (~4.2) before, 4.36 (~4.42) (at times) after. meh :P
 
