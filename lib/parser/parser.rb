@@ -28,11 +28,23 @@ class RedParse
       end
   end
   
+  
+  
+    class ArrayLiteralNode
+      def unparse o=default_unparse_options
+        interior = map{|item| unparse_nl(item,o,'')+item.unparse(o)}.join(', ')
+        if interior.strip.length > 0
+          "RubyArray.new ["+interior+"]"
+        else
+          "RubyArray.new"
+        end
+      end
+    end
+
+  
  class OpNode
   
       def unparse o=default_unparse_options
-        p method(:unparse)
-        
         result=l=left.unparse(o)
         mapper = {'+' => ['ImplementsPlusOneArg', '___plus']}
         # left looks like: ImplementsPlusOneArg(RubyInt.new(2)).
