@@ -18,14 +18,16 @@ describe Parser do
   end
   
   it "should work with methods" do
-     convert("puts 3").should == "puts RubyInt.new(3)"  
+     convert("puts 3").should == "puts RubyInt.new(3)"
   end
   
   it "should work with arrays" do
-     convert("fib_array = []").should == "fib_array=RubyArray.new"
+     convert("fib_array = []").should  == "fib_array=RubyArray.new"
      convert("fib_array = [3]").should == "fib_array=RubyArray.new [RubyInt.new(3)]"
   end
   
   # ... go.rb :P
+  
+  # arbitrary methods
   
 end
