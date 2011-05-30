@@ -38,8 +38,8 @@ interface ImplementsPlusOneArg do
   end
 end
 
-interface ImplementsToI do
-  def to_i():int
+interface ImplementsToJavaI do
+  def to_java_i():int
   end
 end
 
@@ -60,35 +60,36 @@ end
 # should I make this class static? cache it [in a hash]?
 class RubyInt < RubyObj
   
-  implements ImplementsToI
+  implements ImplementsToJavaI
   implements TimesZeroArgBlockOneArg
   implements ImplementsMinusOneArg
   implements ImplementsPlusOneArg
   implements ImplementsLessThanLessThanOneArg2
   
-  def initialize(a:int) # numeric ?
+  def initialize(a:int)
     @a = a
   end
   
   def initialize(incoming:RubyObj)
-    @a = ImplementsToI(incoming).to_i
+    @a = ImplementsToJavaI(incoming).to_java_i
   end
   
   $Override
   def +(o:RubyObj) # Object? prolly wouldnt help me here...
     # @a is an int
-    RubyInt.new(@a + ImplementsToI(o).to_i)
+    RubyInt.new(@a + ImplementsToJavaI(o).to_java_i)
   end
   
   # XXX overflow ?
 
   $Override
   def -(o:RubyObj):RubyObj
-    RubyInt.new(@a - ImplementsToI(o).to_i)
+    outgoing = @a - ImplementsToJavaI(o).to_java_i
+    RubyInt.new(outgoing)
   end
 
   $Override
-  def to_i():int # ummm..shouldn't it complain if I don't have this?
+  def to_java_i():int
     @a
   end
 
@@ -120,7 +121,7 @@ class RubyInt < RubyObj
 end
 
 interface BracketOneArg do
-  def [](offset:ImplementsToI):RubyObj
+  def [](offset:ImplementsToJavaI):RubyObj
   end
 end
 
@@ -139,7 +140,8 @@ class RubyArray < ArrayList # ArrayList<RubyObj> ??
 
   def [](idx:RubyObj):RubyObj 
     # calling to_i is what ruby seems to always do...
-    RubyObj(get(ImplementsToI(idx).to_i))
+    # RubyInt i = ... LODO allow non core classes to be offsets...or maybe I should force them to call their own to_i I'm down with that :P
+    RubyObj(get(ImplementsToJavaI(idx).to_java_i))
   end
   
   def initialize(o:java.util.List)
@@ -150,3 +152,21 @@ end
 
 # for demo of what the actual stevia code looks like, see profile_stev class
 
+# same dir means same package ja?
+# require 'go2.mir'
+
+# specs :P
+
+#RubyInt.new(1) - RubyInt.new(2)
+#RubyInt.new(1) + RubyInt.new(2)
+
+RubyInt.new(1).times do |n| 
+  3
+  nil
+end
+
+RubyInt.new(1).times do |n| 
+  RubyInt.new(1)
+end
+
+puts 3

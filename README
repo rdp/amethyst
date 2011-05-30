@@ -5,4 +5,6 @@ public Object my_method(Object arg1, Object arg2) {
 
 }
 
-but written so that it looks like standard ruby. Suggestions welcome!
+but written so that it looks like standard ruby (via mirah for the hard lifting, and a mirah stdlib to mimic ruby). 
+
+Suggestions/feedback welcome!

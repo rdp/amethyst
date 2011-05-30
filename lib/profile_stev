@@ -20,5 +20,5 @@ thirty = RubyInt.new(30)
   calcFibN(thirty)
 }
 
-#puts 'worked'
+puts 'profile done'
 

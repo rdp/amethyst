@@ -1,6 +1,6 @@
-implements -> real method name
+fake overflow
 
-run the fake fib against rubinius, java plain +- ints :P
+implements -> real method name
 
 a "to jruby and parse the return" bridge
   return parser... :P
@@ -15,9 +15,16 @@ email mirah "is this is a good idea" what other work is like this?
 
 symbols
 
+== LODO ==
+
+@mirah: reopena-ble classes? plz?
+
 possibly fix the @@bug so I can use real cacheing [?[
 ]]
-== LODO ==
+
+make it so it can use a "ruby to_i" 
+
+random_object.
 
 auto ruby class -> mirah wrapper generator LOL
 

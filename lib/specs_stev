@@ -2,8 +2,9 @@
 # require 'go2.mir'
 
 # specs :P
-RubyInt.new(1) - RubyInt.new(2)
-RubyInt.new(1) + RubyInt.new(2)
+
+#RubyInt.new(1) - RubyInt.new(2)
+#RubyInt.new(1) + RubyInt.new(2)
 
 RubyInt.new(1).times do |n| 
   3
@@ -14,5 +15,4 @@ RubyInt.new(1).times do |n|
   RubyInt.new(1)
 end
 
-#RubyInt.new(1).times do |n| # ICE
-#end
+puts 'specs done'
