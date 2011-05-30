@@ -1,10 +1,7 @@
-# same dir means same package ja?
-# require 'go2.mir'
+# same dir means same package ja?  # require 'go2.mir'
 
-# specs :P
-
-#RubyInt.new(1) - RubyInt.new(2) # java compile bug
-#RubyInt.new(1) + RubyInt.new(2)
+#RubyInt.new(1) - RubyInt.new(2) # shows a mirahc -j compile bug
+#RubyInt.new(1) + RubyInt.new(2) # same here
 
 b = 1
 RubyInt.new(2).times do |n| 
@@ -28,6 +25,11 @@ end
 
 raise 'equals failed!' unless RubyInt.new(1486).equals(RubyInt.new(1486))
 
-raise 'bad' unless c.== RubyInt.new(1486)
+raise 'bad1' if c.equals RubyInt.new(14)
+raise 'bad2' unless c.equals RubyInt.new(1486)
 
-puts 'specs done'
+# we could leave == as .equals, hmmm...that sounds like more work though :P
+
+e = (c.equals RubyInt.new(1486)) # native boolean type...scawah!
+
+puts 'specs passed'

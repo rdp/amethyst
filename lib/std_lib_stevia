@@ -6,11 +6,17 @@ import java.util.ArrayList
 
 # eventually we'll probably need this class for doing the "system" or whatever the Kernel shtuff is...
 
+# Note that I've munged -, +, and <<, and should munge == and []= though the latter might be ok...
+
 class RubyObj
+
+  def this
+   self
+  end
 
   $Override
   def equals(o:Object):boolean
-    raise 'not implemented' # the inner classes need to implement this or they are hosed
+    raise 'not implemented' + self.toString # the inner classes need to implement this or they are hosed
   end
 
 end

@@ -20,6 +20,7 @@ end
 # sigh ...
 
 for command in ['mirahc -j specs_stevia', 'javac SpecsStevia.java', 'java SpecsStevia']
+  print  'running ', command
   raise command unless system command
 end
 
