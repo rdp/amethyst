@@ -1,0 +1,16 @@
+class RubyLikeObject
+end
+
+interface Implements_go do
+  def go():RubyLikeObject
+  end
+end
+
+class A
+  implements Implements_go
+  def go()
+    nil
+  end
+end
+
+Implements_go(A.new).go()

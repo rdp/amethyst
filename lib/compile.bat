@@ -1,1 +1,1 @@
-j -S mirahc go2.mir
+j -S mirahc go2stev

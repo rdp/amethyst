@@ -156,10 +156,13 @@ def calcFibN(num:RubyObj)
   # puts fib_array
 end
 
- 
+
+start = Time.now
+
 3_000_000.times {
   calcFibN(RubyInt.new(30))
 }
+endy = Time.now
 
 #puts 'worked'
 
