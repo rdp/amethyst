@@ -1,0 +1,5 @@
+1306771976
+calcFibN	c:/dev/ruby/stevia/comparison/go.rb	def calcFibN(num)
+calcFibN(int num)	c:/dev/ruby/stevia/comparison/go.java	  static void calcFibN(int num)
+go	c:/dev/ruby/stevia/comparison/go.java	class go
+main(String[] args)	c:/dev/ruby/stevia/comparison/go.java	  public static void main(String[] args)
