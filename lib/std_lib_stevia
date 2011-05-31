@@ -73,7 +73,7 @@ interface ImplementsPlusOneArg do
 end
 
 interface ImplementsToJavaI do
-  def to_java_i():int
+  def to_java_i():long
   end
 end
 
@@ -114,13 +114,13 @@ class RubyArray < ArrayList # ArrayList<RubyObj> ?? < RubyObj ?
 
   $Override
   def get(idx:RubyObj) # XXXX why can't it infer this one either?
-    RubyObj(get(ImplementsToJavaI(idx).to_java_i))
+    RubyObj(get(int(ImplementsToJavaI(idx).to_java_i)))
   end
   
   def [](idx:RubyObj):RubyObj 
     # calling to_i is what ruby seems to always do...
     # RubyInt i = ... LODO allow non core classes to be offsets...or maybe I should force them to call their own to_i I'm down with that :P
-    RubyObj(get(ImplementsToJavaI(idx).to_java_i))
+    RubyObj(get(int(ImplementsToJavaI(idx).to_java_i)))
   end
   
   # TODO []=
