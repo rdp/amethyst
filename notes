@@ -1,4 +1,7 @@
 
+using long instead of int for Fixnum:
+  64-bit: 4.38/4.39 compared to 4.42/4.43 [yipes...hmm...]
+
 
 inline sort should *be the default* give me a break!
 now select, reject, I'm ok with those being a copy...actually no I'm not.  That's ridiculous.
