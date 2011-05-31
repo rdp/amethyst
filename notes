@@ -47,7 +47,6 @@ jruby scripting java is kinder on us than mirah is:
 
 3.to_java
 => #<Java::JavaLang::Long:0xc713d2>
->>>>>>> Stashed changes
 
 inline sort should *be the default* give me a break!
 now select, reject, I'm ok with those being a copy...actually no I'm not.  That's ridiculous.
