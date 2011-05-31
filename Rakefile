@@ -11,5 +11,6 @@ Jeweler::Tasks.new do |gem|
   gem.authors = ["rdp"]
   gem.add_dependency 'redparse'
   gem.add_dependency 'mirah', '> 0.7.0' # need dev releases here...
+  gem.add_dependency 'bitescript' '> 0.0.8' # windows users need dev release...
 end
 Jeweler::RubygemsDotOrgTasks.new
