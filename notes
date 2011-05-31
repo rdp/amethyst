@@ -1,4 +1,10 @@
 
+RubyFixnum uses a long.
+
+what is long.class? It's different than Long.class I believe...hmm...
+
+I need to research more...more...
+
 
 inline sort should *be the default* give me a break!
 now select, reject, I'm ok with those being a copy...actually no I'm not.  That's ridiculous.
