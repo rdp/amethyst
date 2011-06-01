@@ -3,5 +3,6 @@ import org.jruby.javasupport.JavaEmbedUtils
 import java.util.ArrayList
 
 runtime = JavaEmbedUtils.initialize(ArrayList.new)
+longy = RubyFixnum.new(runtime, 35)
+longy.op_plus(runtime.getCurrentContext, RubyFixnum.new(runtime, 35))
 
-puts runtime
