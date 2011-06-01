@@ -1,0 +1,91 @@
+
+longs seem much slower than ints, which seems odd somehow [at least with 32 bit JVM, so maybe that's why]
+
+
+
+
+
+java -client Go
+for loop of took:   350  (35) plus what the why is this higher?
+call through took:  188  (19) 
+
+
+java -server Go
+for loop of took:   0 0
+call through took:  513 0
+
+
+java -server Go2
+for loop of took:   0 0
+call through took:  530 0       # tidge higher than Go, and this is straight method call I guess....so maybe in my favor...umm...odd...
+
+
+java -client Go2
+for loop of took:   112 0
+call through took:  191 0
+
+
+
+(divide above by 10 for millis)
+
+
+
+MRI 1.8.7:
+
+"Fixnum#times"
+7569ms == 7500 above ?
+"while loop"
+10559.185
+
+
+KRI:
+
+"Fixnum#times"
+3406.022
+"while loop"
+3180.974
+
+
+
+
+jruby -server (immediately faster)
+"Fixnum#times"
+976.0
+"while loop"
+1068.0 (compared to lowest 53, above, 20x spedup is still ok)
+
+
+
+
+
+notes:
+
+
+        for (int x = 0; x < myValue; x++) {
+          ((CallInterfaceZeroArg) runMeBlock).call();
+        }
+
+seems same speed as 
+
+        CallInterfaceZeroArg) me = (CallInterfaceZeroArg) runMeBlock;
+        for (int x = 0; x < myValue; x++) {
+          me.call();
+        }
+
+
+
+
+
+are these really scrappy compared to ruby?
+
+
+
+
+
+it may be possible to 'pre-inline' some stuff, to help the JIT get "down to 0" :)
+
+
+using long versus int sends it to 13ms from 0, out of 70 total that the "complex" one takes, using an int...
+
+
+maybe it cannot "nested inline" stuff :P
