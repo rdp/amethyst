@@ -1,0 +1,7 @@
+import org.jruby.*
+import org.jruby.javasupport.JavaEmbedUtils
+import java.util.ArrayList
+
+runtime = JavaEmbedUtils.initialize(ArrayList.new)
+
+puts runtime

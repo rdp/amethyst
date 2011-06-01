@@ -1,3 +1,33 @@
+My current plan is to implement that "pseudo abstract" "gimme your fella" method...
+  this way does feel at least somewhat sane :P
+
+
+
+
+I need to study scala...do I want map(_.yo) ? Futures? Actors?  Immutable structures?
+
+shouldn't [1,2,3] be an array?
+
+mirah itself is kind of in the middle, not yet supporting Generics, which would make it even more strongly typed.
+my guess is that it wants to support generics and end up typically being as strongly typed as java or scala.
+since my pet project wants to basically be less strongly typed than mirah, I assume that means I should work it as a separate project.
+
+
+
+
+integration with jruby: maybe I should just have wrappers around jruby "Fixnum" objects themselves, et al, for my internal objects...and
+then descend from JrubyRubyObj instead of RubyObj ... hmm ... hmm ... 
+
+
+for sure I want this to be separate from mirah, since we're heading in different directions :)
+
+
+
+do I need block_5 for named blocks with no use within the method?
+
+
+
+
 
 maybe this would help?
 
