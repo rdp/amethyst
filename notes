@@ -1,4 +1,69 @@
 
+RubyFixnum uses a long.
+
+what is long.class? It's different than Long.class I believe...hmm...some fake wimpy class?
+
+I need to research more...more...
+
+
+
+
+
+using long instead of int for Fixnum:
+  64-bit: 4.38/4.39 compared to 4.42/4.43 [yipes...hmm...]
+so for jruby int., I really only need to recursively call "to_java_internal_obj" then let jruby convert it from there...
+  or maybe I can add methods that would allow it....somehow jruby can convert int to Integer...somehow...something...
+  or maybe java inline is just cruppy and returns you java shtuffs? I guess it does...hmm...
+  
+  32-bit int: 2.79 2.82 2.9 a lot
+
+  32-bit long: 3.33 3.38 ai ai 3.4 15% fascinating...shooting for the future would seem to imply 64 bit...plus I can add an int type later...I don't see why not to...and it puts off overflow :P
+
+  
+  
+is there instanceof much in there ... ?
+
+ def fib(a:int)
+  fib(a)
+ end
+
+puts fib(33)
+
+fails, adding :void, it succeeds...odd. Very odd...it at least needs a better error message...
+
+
+I like 3.to_java_i as it's nice and explicit :P [I can filter on these special methods to not abstract them out ... maybe ? ]
+
+3.to_java
+=> #<Java::JavaLang::Long:0xc713d2>
+
+
+jruby uses op_and internally...
+
+jruby's mirah inline relies on jruby's built-in ability to parse and *convert* from java to 
+
+  one strike against jruby obj's is...it doesn't have the interfaces "shtuff" built-in...
+  but how could/would I ever...I could build arbitrary internal class wrappers
+
+jruby passes around a runtime, internally, as well as having to call things from it...hmm...
+
+
+maybe I should do a demo that "just uses a special build of jruby that includes RubyFixnum that implements the right interfaces..."
+
+how's the speed if I use a long internally?
+  
+  
+jruby scripting java is kinder on us than mirah is:
+
+>> a = ArrayList.new
+=> #<Java::JavaUtil::ArrayList:0x3c9314>
+>> a.add(33)
+=> true
+>> a[0]
+=> 33
+
+3.to_java
+=> #<Java::JavaLang::Long:0xc713d2>
 
 inline sort should *be the default* give me a break!
 now select, reject, I'm ok with those being a copy...actually no I'm not.  That's ridiculous.

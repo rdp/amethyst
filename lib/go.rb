@@ -18,7 +18,7 @@ end
 
 # sigh ...
 
-for command in ['mirahc -j specs', 'javac Specs.java', 'java Specs']
+for command in ['j -S mirahc -j specs', 'javac Specs.java', 'java Specs']
   puts 'running ' + command
   raise command unless system command
 end

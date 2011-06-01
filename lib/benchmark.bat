@@ -1,1 +1,1 @@
-timer run_stevia_server.bat
+ruby -e "s = Time.now; system(\"run_stevia_server.bat\"); p Time.now-s"
