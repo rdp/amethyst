@@ -1,8 +1,32 @@
 import org.jruby.*
 import org.jruby.javasupport.JavaEmbedUtils
 import java.util.ArrayList
+import org.jruby.runtime.builtin.IRubyObject
 
 runtime = JavaEmbedUtils.initialize(ArrayList.new)
 longy = RubyFixnum.new(runtime, 35)
 longy.op_plus(runtime.getCurrentContext, RubyFixnum.new(runtime, 35))
+
+# IRubyObject
+
+# use bash's "time" command to profile :)
+
+def calcFibN(r:Ruby, num:IRubyObject)
+
+  # public static RubyArray newArray(Ruby runtime, Collection<? extends IRubyObject> collection) {
+
+  fib_array = RubyArray.new(r, [RubyFixnum.new(r, 0), RubyFixnum.new(r, 1)] )
+  #  TimesZeroArgBlockOneArg(ImplementsMinusOneArg(num).___minus RubyInt.new(2)).times do |i|
+  #   # ruby:  fib_array << (fib_array[i] + fib_array[i+1])
+  #   # a bit ugly, but this is how it'll turnout/look in the end...in theory muhahaha...
+  #   ImplementsLessThanLessThanOneArg(fib_array).lessThanLessThan(ImplementsPlusOneArg(fib_array[i]).___plus fib_array[ImplementsPlusOneArg(i).___plus RubyInt.new(1)])
+  # end
+  # puts fib_array
+end
+
+# 3_000_000.times {
+#   calcFibN(RubyFixnum.new(runtime, 30))
+# }
+calcFibN(runtime, RubyFixnum.new(runtime, 30))
+puts 'profile done'
 
