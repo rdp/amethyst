@@ -1,4 +1,14 @@
 
+maybe this would help?
+
+
+
+    @Override
+    public RubyString convertToString() {
+        return this;
+    }
+    
+
 RubyFixnum uses a long.
 
 what is long.class? It's different than Long.class I believe...hmm...some fake wimpy class?

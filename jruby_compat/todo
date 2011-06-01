@@ -1,0 +1,7 @@
+#
+#
+# need to get the internal "Dynamic method" of each method, then I can call invoke...
+# I guess initially with just an array always, then...more specific
+# See Rubyclass#invoke I...guess...think... then call on it...I...guess...
+# 
+
