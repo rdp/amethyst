@@ -1,6 +1,5 @@
 
 accomodate:  "20000000000000000000"
-email mirah "is this is a good idea" what other work is like this?
 
 a "to jruby and parse the return" bridge
   return parser... :P
@@ -15,6 +14,9 @@ equals, array right class
   aliases' ?
   import fj.control.parallel.ParModule._
 
+vals map { x => future { f(x) } } foreach { _() }
+
+vals.parallel(5) {|parallel| parallel.map{|v| f(v) }.reject{|n| n < 3} } # this feels right :P
 
 umm...do I want to use immutable by default? huh? I guess scala forces you to decide on the fly eh...it seems to me like the default should be immutable it seems like I should study up on the competition first, to see what they are doing...why not?.
 
