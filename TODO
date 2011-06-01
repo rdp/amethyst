@@ -3,26 +3,30 @@ email mirah "is this is a good idea" what other work is like this?
 a "to jruby and parse the return" bridge
   return parser... :P
 
-fix http://code.google.com/p/mirah/issues/detail?id=50 []= not working, so my arrays can be happy
-
 a parser generator [redparse]?
+
+equals, array right class
 
 == LODO ==
 
-mirahc doesn't return right...
+@mirah: Did you consider renaming Scala's Vector class with an import? 
+  aliases' ?
+  import fj.control.parallel.ParModule._
+
+
+umm...do I want to use immutable by default? huh? I guess scala forces you to decide on the fly eh...it seems to me like the default should be immutable it seems like I should study up on the competition first, to see what they are doing...why not?.
+
+a "from java and back" munger? [maybe just Me.to_robj(anything) for all parameters :P ]
+
+fix http://code.google.com/p/mirah/issues/detail?id=50 []= not working, so my arrays can be happy
+
+mirahc doesn't return right errorlevel it appears...
 
 c:\dev\ruby\stevia\lib>jruby -S mirahc std_lib_ruby_int
-Parsing...
-  std_lib_ruby_int
-Inferring types...
-Inference Error:
-Unable to infer type.
-std_lib_ruby_int:18: Unable to infer type.
-  def equals(o)
-             ^
-
+...
 c:\dev\ruby\stevia\lib>echo %ERRORLEVEL%
 0
+
 backtraces on the command line
 
 named arguments LOL
